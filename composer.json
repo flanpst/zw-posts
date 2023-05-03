@@ -3,6 +3,11 @@
     "description": "Sistema de postagens para o Zoom Words CMS desenvolvido pela Flanp S.T.",
     "type": "package",
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Posts\\": "./"
+        }
+    },
     "authors": [
         {
             "name": "\"Flanp S.T.\"",
