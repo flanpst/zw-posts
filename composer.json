@@ -1,0 +1,14 @@
+{
+    "name": "flanp/zwcms-posts",
+    "description": "Sistema de postagens para o Zoom Words CMS desenvolvido pela Flanp S.T.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "\"Flanp S.T.\"",
+            "email": "contato@flanp.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
