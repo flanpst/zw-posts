@@ -10,5 +10,15 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+    "repositories": [
+        {"type": "composer", "url": "https://flanp.repo.repman.io"}
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Posts\\Providers\\PostsServiceProvider"
+            ]
+        }
+    }
 }
