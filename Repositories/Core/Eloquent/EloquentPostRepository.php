@@ -2,6 +2,7 @@
 
 namespace Modules\Posts\Repositories\Core\Eloquent;
 
+use Modules\Posts\Models\Post;
 use Illuminate\Support\Str;
 use Modules\Posts\Repositories\Contracts\PostRepositoryInterface;
 use Modules\Posts\Repositories\Core\BaseEloquentRepository;
@@ -31,6 +32,8 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
                 $user = auth()->user();
                 $dateConvert = date('Y-m-d H:i:s', strtotime($data['publication_date']));
 
+                $meta_tags = implode(',', $data['meta_tags']);
+
                 $modelData = [
                         'title' => $data['title'],
                         'content' => $data['content'],
@@ -44,7 +47,7 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
                         'post_status' => $data['post_status'],
                         'meta_title' => $data['meta_title'],
                         'meta_description' => $data['meta_description'],
-                        'meta_tags' => $data['meta_tags']
+                        'meta_tags' => $meta_tags
                 ];
 
                 $model = new $this->entity();
@@ -58,6 +61,7 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
         public function update($id, $data)
         {
                 $dateConvert = date('Y-m-d H:i:s', strtotime($data['publication_date']));
+                $meta_tags = implode(',', $data['meta_tags']);
 
                 $model = $this->entity::find($id);
 
@@ -74,7 +78,8 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
                                 'user_id' => $data['user_id'],
                                 'post_status' => $data['post_status'],
                                 'meta_title' => $data['meta_title'],
-                                'meta_description' => $data['meta_description']
+                                'meta_description' => $data['meta_description'],
+                                'meta_tags' => $meta_tags
                         ]);
                 }
         }

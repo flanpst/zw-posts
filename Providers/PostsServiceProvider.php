@@ -10,10 +10,11 @@ use Modules\Posts\Models\PostCategory;
 use Modules\Posts\Policies\PostCategoryPolicy;
 use Modules\Posts\Policies\PostPolicy;
 use Modules\Posts\Repositories\Contracts\PostCategoryRepositoryInterface;
+use Modules\Posts\Repositories\Contracts\PostRepositoryInterface;
 use Modules\Posts\Repositories\Core\Eloquent\EloquentPostCategoryRepository;
 use Modules\Posts\Repositories\Core\Eloquent\EloquentPostRepository;
 
-class SettingServiceProvider extends ServiceProvider
+class PostsServiceProvider extends ServiceProvider
 {
     public function boot()
     {

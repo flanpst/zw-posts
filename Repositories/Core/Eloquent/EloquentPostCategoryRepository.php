@@ -2,9 +2,9 @@
 
 namespace Modules\Posts\Repositories\Core\Eloquent;
 
-use App\Repositories\Contracts\PostCategoryRepositoryInterface;
 use Illuminate\Support\Str;
 use Modules\Posts\Models\PostCategory;
+use Modules\Posts\Repositories\Contracts\PostCategoryRepositoryInterface;
 use Modules\Posts\Repositories\Core\BaseEloquentRepository;
 
 class EloquentPostCategoryRepository extends BaseEloquentRepository implements PostCategoryRepositoryInterface
