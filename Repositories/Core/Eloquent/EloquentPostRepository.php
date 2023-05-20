@@ -32,7 +32,8 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
                 $user = auth()->user();
                 $dateConvert = date('Y-m-d H:i:s', strtotime($data['publication_date']));
 
-                $meta_tags = implode(',', $data['meta_tags']);
+                $meta_tags = is_array($data['meta_tags']) ? $data['meta_tags'] : [$data['meta_tags']];
+                $meta_tags = implode(',', $meta_tags);
 
                 $modelData = [
                         'title' => $data['title'],
