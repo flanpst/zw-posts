@@ -12,9 +12,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * @var Post
-     */
     protected $repository;
 
     /**
@@ -24,7 +21,6 @@ class PostController extends Controller
     public function __construct(
         PostRepositoryInterface $repository
     ){
-        $this->authorizeResource(Post::class, 'post');
         $this->repository = $repository;
     }
 
@@ -73,14 +69,13 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Modules\Posts\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     *
      */
-    public function show(Post $post)
+    public function show($post)
     {
         try{
             $data = $this->repository
-                ->findWhereFirst("id", $post->id);
+                ->findWhereFirst("id", $post);
             return response()->json($data);
         }catch(Exception $e){
             return response()->json(['message' => $e->getMessage()], 500);
@@ -90,7 +85,6 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Modules\Posts\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -102,13 +96,12 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Modules\Posts\Http\Requests\UpdatePostRequest  $request
-     * @param  \Modules\Posts\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, $post)
     {
         try {
-            $this->repository->update($post->id, $request->all());
+            $this->repository->update($post, $request->all());
             return response()->json(['success' => 'Registro atualizado'],200);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -118,10 +111,9 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Modules\Posts\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($post)
     {
         try {
             $this->repository->delete($post->id);

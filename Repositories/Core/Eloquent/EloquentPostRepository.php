@@ -61,29 +61,30 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
 
         public function update($id, $data)
         {
-                $dateConvert = date('Y-m-d H:i:s', strtotime($data['publication_date']));
-                $meta_tags = implode(',', $data['meta_tags']);
+            $dateConvert = date('Y-m-d H:i:s', strtotime($data['publication_date']));
+            $meta_tags = is_array($data['meta_tags']) ? implode(',', $data['meta_tags']) : '';
 
-                $model = $this->entity::find($id);
+            $model = $this->entity::find($id);
 
-                if ($model) {
-                        $model->update([
-                                'title' => $data['title'],
-                                'content' => $data['content'],
-                                'resume' => $data['resume'],
-                                'image' => $data['image'],
-                                'banner' => $data['banner'],
-                                'slug' => Str::of($data['title'])->slug('-'),
-                                'post_category_id' => $data['post_category_id'],
-                                'publication_date' => $dateConvert,
-                                'user_id' => $data['user_id'],
-                                'post_status' => $data['post_status'],
-                                'meta_title' => $data['meta_title'],
-                                'meta_description' => $data['meta_description'],
-                                'meta_tags' => $meta_tags
-                        ]);
-                }
+            if ($model) {
+                $model->update([
+                    'title' => $data['title'],
+                    'content' => $data['content'],
+                    'resume' => $data['resume'],
+                    'image' => $data['image'],
+                    'banner' => $data['banner'],
+                    'slug' => Str::of($data['title'])->slug('-'),
+                    'post_category_id' => $data['post_category_id'],
+                    'publication_date' => $dateConvert,
+                    'user_id' => $data['user_id'],
+                    'post_status' => $data['post_status'],
+                    'meta_title' => $data['meta_title'],
+                    'meta_description' => $data['meta_description'],
+                    'meta_tags' => $meta_tags
+                ]);
+            }
         }
+
 
         public function homeList()
         {

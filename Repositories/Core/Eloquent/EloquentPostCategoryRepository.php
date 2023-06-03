@@ -26,7 +26,7 @@ class EloquentPostCategoryRepository extends BaseEloquentRepository implements P
     }
 
 
-    public function update(int $id, array $data): bool
+    public function update(int $id, $data): bool
     {
         $model = $this->entity::find($id);
         if($model){

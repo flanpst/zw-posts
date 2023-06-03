@@ -28,7 +28,7 @@ class PostCategoryPolicy
      * @param  \Modules\Posts\Models\PostCategory  $postCategory
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, PostCategory $postCategory)
+    public function view(User $user)
     {
         return $user->hasAbility('post-categoria-visualizar');
     }

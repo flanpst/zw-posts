@@ -28,7 +28,7 @@ class PostPolicy
      * @param  \Modules\Posts\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Post $post)
+    public function view(User $user)
     {
         return $user->hasAbility('post-visualizar');
     }
@@ -77,7 +77,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post)
     {
-        //
+        return $user->hasAbility('post-visualizar');
     }
 
     /**
@@ -89,6 +89,6 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post)
     {
-        //
+        return $user->hasAbility('post-visualizar');
     }
 }

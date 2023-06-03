@@ -22,8 +22,8 @@ class PostsServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/../Migrations');
 
-        Gate::policy(Post::class, PostPolicy::class);
-        Gate::policy(PostCategory::class, PostCategoryPolicy::class);
+        // Gate::policy(Post::class, PostPolicy::class);
+        // Gate::policy(PostCategory::class, PostCategoryPolicy::class);
     }
 
     public function register()

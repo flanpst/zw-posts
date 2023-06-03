@@ -23,7 +23,7 @@ class PostCategoryController extends Controller
     public function __construct(
         PostCategoryRepositoryInterface $repository
     ){
-        $this->authorizeResource(PostCategory::class);
+        // $this->authorizeResource(PostCategory::class);
         $this->repository = $repository;
     }
 
@@ -76,11 +76,11 @@ class PostCategoryController extends Controller
      * @param  \Modules\Posts\Models\PostCategory  $postCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(PostCategory $postCategory)
+    public function show($postCategory)
     {
         try{
             $data = $this->repository
-                ->findWhereFirst("id", $postCategory->id);
+                ->findWhereFirst("id", $postCategory);
             return response()->json($data);
         }catch(Exception $e){
             return response()->json(['message' => $e->getMessage()], 500);
@@ -93,7 +93,7 @@ class PostCategoryController extends Controller
      * @param  \Modules\Posts\Models\PostCategory  $postCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostCategory $postCategory)
+    public function edit($postCategory)
     {
         //
     }
@@ -105,10 +105,10 @@ class PostCategoryController extends Controller
      * @param  \Modules\Posts\Models\PostCategory  $postCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostCategoryRequest $request, PostCategory $postCategory)
+    public function update(UpdatePostCategoryRequest $request, $postCategory)
     {
         try {
-            $this->repository->update($postCategory->id, $request->all());
+            $this->repository->update($postCategory, $request->all());
             return response()->json(['success' => 'Registro atualizado'],200);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -121,7 +121,7 @@ class PostCategoryController extends Controller
      * @param  \Modules\Posts\Models\PostCategory  $postCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostCategory $postCategory)
+    public function destroy($postCategory)
     {
         try {
             $this->repository->delete($postCategory->id);
